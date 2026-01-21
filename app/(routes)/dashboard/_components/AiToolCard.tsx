@@ -20,10 +20,13 @@ function AiToolCard({tool}:AIToolsProps){
             <Image src={tool.icon} width={40} height={40} alt={tool.name}/>
             <h2 className="font-bold mt-2">{tool.name}</h2>
             <p className="text-gray-400">{tool.desc}</p>
-            <Link href={tool.path}>  
-            <Button className="w-full mt-3 bg-[#355ca9] hover:bg-[#1d4084] transition">{tool.button}</Button>
+            
+            {/* ADD target="_blank" TO THE LINK */}
+            <Link href={tool.path} target="_blank">  
+              <Button className="w-full mt-3 bg-[#355ca9] hover:bg-[#1d4084] transition">{tool.button}</Button>
             </Link>
+
         </div>
     )
 }
-export default AiToolCard   
+export default AiToolCard  
