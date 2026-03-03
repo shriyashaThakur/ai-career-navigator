@@ -5,46 +5,59 @@ import {
     SidebarFooter,
     SidebarGroup,
     SidebarGroupContent,
-    SidebarGroupLabel,
     SidebarHeader,
     SidebarMenu,
-    SidebarMenuButton,
-    SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { Calendar, Home, Inbox, Wallet,UserCircle,Layers, Search, Settings } from "lucide-react"
+import {
+    FileText,
+    GraduationCap,
+    LayoutDashboard,
+    Map,
+    MessageSquare,
+    User,
+} from "lucide-react"
 import Image from 'next/image'
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 const items = [
     {
-        title: "Workspace",
-        url: "#",
-        icon: Layers,
+        title: "Dashboard",
+        url: "/dashboard",
+        icon: LayoutDashboard,
     },
     {
-        title: "AI Tools",
-        url: "#",
-        icon: Inbox,
+        title: "Resume Analyzer",
+        url: "/ai-tools/resume-analyzer",
+        icon: FileText,
     },
     {
-        title: "My History",
-        url: "#",
-        icon: Calendar,
+        title: "Career Roadmap",
+        url: "/ai-tools/ai-roadmap-agent",
+        icon: Map,
     },
     {
-        title: "Billing",
-        url: "#",
-        icon: Wallet,
+        title: "AI Chatbot",
+        url: "/ai-tools/ai-chat",
+        icon: MessageSquare,
+    },
+    {
+        title: "Alumni Network",
+        url: "/alumni",
+        icon: GraduationCap,
     },
     {
         title: "Profile",
-        url: "#",
-        icon: UserCircle,
+        url: "/profile",
+        icon: User,
     },
 ]
 
 export function AppSidebar() {
     const path = usePathname();
+    const isActive = (itemUrl: string) =>
+        path === itemUrl || path.startsWith(`${itemUrl}/`);
+
     return (
         <Sidebar>
             <SidebarHeader>
@@ -60,15 +73,15 @@ export function AppSidebar() {
                     <SidebarGroupContent>
                         <SidebarMenu className='mt-2'>
                             {items.map((item, index) => (
-                                // <SidebarMenuItem key={item.title} className='p-2'>
-                                //     <SidebarMenuButton asChild className=''>
-                                <a href={item.url} key={index} className={`p-2 text-lg flex gap-2 items-center
-                                 hover:bg-gray-100 rounded-lg ${path.includes(item.url) && 'bg-gray-200ß'}`}>
+                                <Link
+                                    href={item.url}
+                                    key={index}
+                                    className={`p-2 text-lg flex gap-2 items-center rounded-lg transition-colors
+                                    ${isActive(item.url) ? 'bg-gray-100 font-medium' : 'hover:bg-gray-100'}`}
+                                >
                                     <item.icon className='h-5 w-5' />
                                     <span>{item.title}</span>
-                                </a>
-                                //     </SidebarMenuButton>
-                                // </SidebarMenuItem>
+                                </Link>
                             ))}
                         </SidebarMenu>
                     </SidebarGroupContent>

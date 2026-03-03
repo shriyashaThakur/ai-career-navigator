@@ -7,14 +7,14 @@ const aiToolsList=[
         desc:'Chat with AI agent',
         icon:'/chatbot.png',
         button:'Lets Chat',
-        path:'http://localhost:3001'
+        path:'ai-tools/ai-chat' 
     },
     {
         name:'AI Resume Analyzer',
         desc:'Improve your resume',
         icon:'/resume.png',
         button:'Analyze Now',
-        path:'/ai-resume-analyzer'
+        path:'ai-tools/resume-analyzer'
     },
     {
         name:'Career Roadmap Generator',
@@ -28,7 +28,7 @@ const aiToolsList=[
         desc:'Connect with your alumni',
         icon:'/cover.png',
         button:'Start Now',
-        path:'/cover-letter-generator'
+        path:'alumni'
     },
 ]
 
