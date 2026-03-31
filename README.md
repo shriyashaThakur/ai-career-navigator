@@ -37,3 +37,30 @@ AI Career Navigator is a comprehensive, AI-powered platform designed to help stu
 ```bash
 git clone [https://github.com/shriyashaThakur/ai-career-navigator.git](https://github.com/shriyashaThakur/ai-career-navigator.git)
 cd ai-career-navigator
+```
+### 2️⃣ Install Dependencies
+
+```bash
+npm install
+```
+---
+### 3️⃣ Environment Variables
+
+* Create a .env.local file in the root directory and add the following:
+```bash
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_pub_key
+CLERK_SECRET_KEY=your_clerk_secret_key
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+
+DATABASE_URL=your_neon_db_url
+GEMINI_API_KEY=your_google_gemini_api_key
+```
+---
+### 4️⃣ Run the development server
+
+```bash
+npm run dev
+```
+* Open http://localhost:3002 to see the result.
+---
