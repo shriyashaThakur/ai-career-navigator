@@ -1,3 +1,10 @@
+// FIX: Polyfill for DOMMatrix in Node.js environment (needed for pdf-parse on Vercel)
+if (typeof global.DOMMatrix === 'undefined') {
+  (global as any).DOMMatrix = class DOMMatrix {
+    constructor() {}
+  };
+}
+
 import { GoogleGenAI } from "@google/genai";
 import { NextResponse } from "next/server";
 import { db } from "@/configs/db";
