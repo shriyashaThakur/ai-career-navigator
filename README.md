@@ -9,9 +9,13 @@ AI Career Navigator is a comprehensive, AI-powered platform designed to help stu
 ## ✨ Key Features
 
 - **📄 AI Resume Analyzer:** Upload your resume to get a real-time ATS compatibility score. Receive deep insights into keyword matching, formatting warnings, and AI-suggested improvements using the professional "XYZ formula."
+  
 - **🗺️ AI Roadmap Agent:** Generate personalized, step-of-step career roadmaps based on your target role and current skill level to help you navigate your learning journey.
+  
 - **💬 RAG-Powered AI Chatbot:** A context-aware career assistant powered by Gemini. Because it uses **Retrieval-Augmented Generation (RAG)**, you can ask specific questions about your uploaded resumes and generated roadmaps for personalized, data-driven advice.
+  
 - **🎓 Alumni Connect:** Browse professional profiles of successful alumni and directly access their **LinkedIn** profiles to build meaningful connections, seek mentorship, or request referrals from those already in the industry.
+  
 - **📊 Centralized Dashboard:** A unified hub to quickly view and access your past resume analyses and saved career roadmaps without searching through different pages.
 
 ---
@@ -35,7 +39,7 @@ AI Career Navigator is a comprehensive, AI-powered platform designed to help stu
 
 ### 1. Clone the repository
 ```bash
-git clone [https://github.com/shriyashaThakur/ai-career-navigator.git](https://github.com/shriyashaThakur/ai-career-navigator.git)
+git clone https://github.com/shriyashaThakur/ai-career-navigator.git
 cd ai-career-navigator
 ```
 ### 2. Install Dependencies
