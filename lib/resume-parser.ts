@@ -1,3 +1,10 @@
+// 1. ADD THIS POLYFILL AT THE ABSOLUTE TOP (Line 1)
+if (typeof global.DOMMatrix === 'undefined') {
+  (global as any).DOMMatrix = class DOMMatrix {
+    constructor() {}
+  };
+}
+
 import { PDFParse } from "pdf-parse";
 
 export type ParsedResumePdf = {
