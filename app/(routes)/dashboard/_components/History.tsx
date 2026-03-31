@@ -7,7 +7,7 @@ function History() {
     const [userHistory, setUserHistory] = useState([]); 
     return(
         <div className='mt-5 p-5 border rounded-xl'>
-            <h2 className="font-bold text-lg">Previous History</h2>
+            <h2 className="font-bold text-lg"> Previous history </h2>
             <p>What you previously worked on, you can find here </p>
 
             {userHistory?.length==0&&(

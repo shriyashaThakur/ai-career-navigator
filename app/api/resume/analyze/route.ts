@@ -1,9 +1,4 @@
-// FIX: Polyfill for DOMMatrix in Node.js environment (needed for pdf-parse on Vercel)
-if (typeof global.DOMMatrix === 'undefined') {
-  (global as any).DOMMatrix = class DOMMatrix {
-    constructor() {}
-  };
-}
+
 
 import { GoogleGenAI } from "@google/genai";
 import { NextResponse } from "next/server";
@@ -11,6 +6,8 @@ import { db } from "@/configs/db";
 import { resumesTable } from "@/configs/schema";
 import { extractTextFromPdfFile } from "@/lib/resume-parser";
 import { getOrCreateDbUser } from "@/lib/server/db-user";
+
+export const maxDuration = 60; // Allows the AI up to 60 seconds to finish
 
 export const runtime = "nodejs";
 

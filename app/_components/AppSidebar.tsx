@@ -64,7 +64,7 @@ export function AppSidebar() {
                 <div className='p-4'>
                     <Image src={'/new.png'} alt='logo' width={100} height={70}
                         className='w-full' />
-                    <h2 className='text-sm text-gray-400 text-center mt-3'>Build Awesome Skills</h2>
+                    <h2 className='text-sm text-gray-400 text-center mt-3'>Build Awesome Skills with the ai career navigator  </h2>
                 </div>
             </SidebarHeader>
             <SidebarContent>

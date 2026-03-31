@@ -1,11 +1,14 @@
-// 1. ADD THIS POLYFILL AT THE ABSOLUTE TOP (Line 1)
+// @ts-ignore
+// 1. Define the polyfill FIRST before any imports/requires
 if (typeof global.DOMMatrix === 'undefined') {
-  (global as any).DOMMatrix = class DOMMatrix {
+  // @ts-ignore
+  global.DOMMatrix = class DOMMatrix {
     constructor() {}
   };
 }
 
-import { PDFParse } from "pdf-parse";
+// 2. Use require to prevent 'hoisting' (loading before the polyfill)
+const pdf = require("pdf-parse");
 
 export type ParsedResumePdf = {
   fileName: string;
@@ -28,12 +31,14 @@ export const extractTextFromPdfFile = async (file: File): Promise<ParsedResumePd
 
   const fileName = file.name || "resume.pdf";
   const arrayBuffer = await file.arrayBuffer();
-  const pdfData = new Uint8Array(arrayBuffer);
+  
+  // 3. Vercel/Node.js handles Buffers more reliably for file parsing
+  const buffer = Buffer.from(arrayBuffer);
 
-  const parser = new PDFParse({ data: pdfData });
   try {
-    const textResult = await parser.getText();
-    const normalizedText = normalizeWhitespace(textResult.text ?? "");
+    // 4. Standard pdf-parse functional call
+    const data = await pdf(buffer);
+    const normalizedText = normalizeWhitespace(data.text ?? "");
 
     if (!normalizedText) {
       throw new Error("Could not extract readable text from the uploaded PDF");
@@ -43,8 +48,8 @@ export const extractTextFromPdfFile = async (file: File): Promise<ParsedResumePd
       fileName,
       text: normalizedText.slice(0, MAX_TEXT_CHARS),
     };
-  } finally {
-    await parser.destroy();
+  } catch (error) {
+    console.error("PDF Parsing Error:", error);
+    throw new Error("Failed to parse PDF content");
   }
 };
-
