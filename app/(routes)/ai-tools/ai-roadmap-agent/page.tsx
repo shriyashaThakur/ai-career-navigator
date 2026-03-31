@@ -426,12 +426,19 @@ function RoadmapGeneratorAgent() {
 
   return (
     <div className="space-y-6">
-      <div className="rounded-xl border bg-white p-5">
-        <h1 className="text-2xl font-bold">AI Career Roadmap Generator</h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Describe your goal, generate a roadmap with Gemini, save it to your account, and view it
-          as an interactive flow.
-        </p>
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-tr from-[#1d4084] via-[#355ca9] to-[#f48322] p-8 shadow-lg">
+  {/* Subtle glow effect to match the premium brand look */}
+        <div className="absolute -right-10 -top-10 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
+  
+        <div className="relative z-10">
+          <h1 className="text-3xl font-extrabold tracking-tight text-white">
+             AI Career Roadmap Generator
+          </h1>
+          <p className="mt-2 text-sm font-medium text-white/80 max-w-2xl leading-relaxed">
+            Describe your goal, generate a roadmap, save it to your account, 
+            and view it as an interactive flow.
+          </p>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
@@ -480,16 +487,20 @@ function RoadmapGeneratorAgent() {
               />
             </div>
 
-            <Button type="submit" disabled={isGenerating} className="w-full">
+            <Button 
+              type="submit" 
+              disabled={isGenerating} 
+              className="w-full h-10 rounded-xl bg-[#355ca9] hover:bg-[#1d4084] text-white font-semibold shadow-md shadow-blue-900/10 transition-all active:scale-[0.98] flex items-center justify-center gap-2 mt-2"
+            >
               {isGenerating ? (
                 <>
                   <Loader2 className="h-4 w-4 animate-spin" />
-                  Generating...
+                  <span className="text-sm">Generating...</span>
                 </>
               ) : (
                 <>
                   <Sparkles className="h-4 w-4" />
-                  Generate and Save
+                  <span className="text-sm">Generate and Save</span>
                 </>
               )}
             </Button>

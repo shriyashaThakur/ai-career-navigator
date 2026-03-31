@@ -62,7 +62,7 @@ export function AppSidebar() {
         <Sidebar>
             <SidebarHeader>
                 <div className='p-4'>
-                    <Image src={'/terna-logo.svg'} alt='logo' width={100} height={70}
+                    <Image src={'/new.png'} alt='logo' width={100} height={70}
                         className='w-full' />
                     <h2 className='text-sm text-gray-400 text-center mt-3'>Build Awesome Skills</h2>
                 </div>
@@ -88,7 +88,7 @@ export function AppSidebar() {
                 </SidebarGroup>
             </SidebarContent>
             <SidebarFooter>
-                <h2 className='p-2 text-gray-400 text-sm'>Copyright @ternaengg</h2>
+                <h2 className='p-2 text-gray-400 text-sm'>Copyright @xyz</h2>
             </SidebarFooter>
         </Sidebar>
     )

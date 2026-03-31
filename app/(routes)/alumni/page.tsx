@@ -1,6 +1,6 @@
 "use client";
 
-import { Briefcase, Building2, GraduationCap, Linkedin, Search } from "lucide-react";
+import { Briefcase, Building2, GraduationCap, Linkedin, Search, Users } from "lucide-react";
 import React, { useEffect, useMemo, useState } from "react";
 import { Input } from "@/components/ui/input";
 
@@ -65,70 +65,94 @@ function AlumniPage() {
   }, [alumni, search]);
 
   return (
-    <div className="space-y-6">
-      <div className="rounded-xl border bg-white p-5">
-        <h1 className="text-2xl font-bold">Alumni Directory</h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Connect with Terna Engineering College alumni across domains and roles.
-        </p>
+    <div className="space-y-8 pb-10">
+      {/* HEADER: Matching the Dashboard & Chatbot Style */}
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-tr from-[#1d4084] via-[#355ca9] to-[#f48322] p-8 shadow-lg">
+        <div className="absolute -right-10 -top-10 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
+        <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div>
+            <h1 className="text-3xl font-extrabold tracking-tight text-white">Alumni Directory</h1>
+            <p className="mt-2 font-medium text-white/80">
+              Connect with mentors and peers across the global industry.
+            </p>
+          </div>
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white/20 backdrop-blur-md text-white">
+            <Users className="h-6 w-6" />
+          </div>
+        </div>
       </div>
 
-      <div className="rounded-xl border bg-white p-4">
-        <div className="relative">
-          <Search className="pointer-events-none absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
+      {/* SEARCH BAR: Better visual depth */}
+      <div className="rounded-2xl border border-slate-200 bg-white p-2 shadow-sm">
+        <div className="relative group">
+          <Search className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400 group-focus-within:text-[#355ca9] transition-colors" />
           <Input
             value={search}
             onChange={(event) => setSearch(event.target.value)}
-            className="pl-9"
-            placeholder="Search by role or domain (e.g., Data Science, Backend Engineer)"
+            className="h-12 border-none bg-transparent pl-12 shadow-none focus-visible:ring-0 text-base"
+            placeholder="Search by role, company, domain, or year..."
           />
         </div>
       </div>
 
+      {/* CONTENT AREA */}
       {isLoading ? (
-        <div className="rounded-xl border bg-white p-6 text-sm text-muted-foreground">
-          Loading alumni directory...
+        <div className="flex h-64 flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 text-slate-500">
+          <div className="h-8 w-8 animate-spin rounded-full border-4 border-[#355ca9] border-t-transparent mb-4" />
+          <p className="text-sm font-medium">Syncing Alumni Directory...</p>
         </div>
       ) : error ? (
-        <div className="rounded-xl border border-red-200 bg-red-50 p-6 text-sm text-red-700">
-          {error}
+        <div className="rounded-2xl border border-red-200 bg-red-50 p-8 text-center">
+          <p className="text-sm font-semibold text-red-700">{error}</p>
         </div>
       ) : filteredAlumni.length === 0 ? (
-        <div className="rounded-xl border bg-white p-6 text-sm text-muted-foreground">
-          No alumni matched your search.
+        <div className="rounded-2xl border border-slate-200 bg-white p-12 text-center shadow-sm">
+          <Search className="mx-auto h-12 w-12 text-slate-200 mb-4" />
+          <h3 className="text-lg font-semibold text-slate-900">No alumni found</h3>
+          <p className="text-sm text-slate-500">Try adjusting your search or domain filters.</p>
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
           {filteredAlumni.map((item) => (
-            <div key={item.id} className="rounded-xl border bg-white p-5 shadow-sm">
-              <h2 className="text-lg font-semibold">{item.name}</h2>
-              <div className="mt-3 space-y-2 text-sm text-slate-700">
-                <p className="flex items-center gap-2">
-                  <Briefcase className="h-4 w-4 text-slate-500" />
+            <div 
+              key={item.id} 
+              className="group relative flex flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-[#355ca9]/5"
+            >
+              <div className="mb-4 flex items-start justify-between">
+                <h2 className="text-xl font-bold text-slate-900 group-hover:text-[#355ca9] transition-colors">
+                    {item.name}
+                </h2>
+                <span className="rounded-lg bg-blue-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-[#355ca9]">
+                    {item.domain}
+                </span>
+              </div>
+
+              <div className="space-y-3 text-sm font-medium text-slate-600">
+                <p className="flex items-center gap-3">
+                  <Briefcase className="h-4 w-4 text-slate-400 group-hover:text-[#355ca9] transition-colors" />
                   {item.currentRole}
                 </p>
-                <p className="flex items-center gap-2">
-                  <Building2 className="h-4 w-4 text-slate-500" />
+                <p className="flex items-center gap-3">
+                  <Building2 className="h-4 w-4 text-slate-400 group-hover:text-[#355ca9] transition-colors" />
                   {item.company}
                 </p>
-                <p className="flex items-center gap-2">
-                  <GraduationCap className="h-4 w-4 text-slate-500" />
+                <p className="flex items-center gap-3">
+                  <GraduationCap className="h-4 w-4 text-slate-400 group-hover:text-[#355ca9] transition-colors" />
                   Class of {item.graduationYear}
-                </p>
-                <p className="inline-flex rounded-full border bg-slate-50 px-3 py-1 text-xs font-medium">
-                  {item.domain}
                 </p>
               </div>
 
-              <a
-                href={item.linkedInUrl}
-                target="_blank"
-                rel="noreferrer noopener"
-                className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800"
-              >
-                <Linkedin className="h-4 w-4" />
-                Connect on LinkedIn
-              </a>
+              <div className="mt-auto pt-6">
+                <a
+                  href={item.linkedInUrl}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#355ca9] px-4 py-2.5 text-sm font-bold text-white shadow-md shadow-[#355ca9]/20 transition-all hover:bg-[#1d4084] hover:shadow-lg active:scale-[0.98]"
+                >
+                  <Linkedin className="h-4 w-4" />
+                  Connect on LinkedIn
+                </a>
+              </div>
             </div>
           ))}
         </div>
@@ -138,4 +162,3 @@ function AlumniPage() {
 }
 
 export default AlumniPage;
-

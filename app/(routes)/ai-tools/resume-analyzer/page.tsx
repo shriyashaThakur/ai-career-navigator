@@ -283,12 +283,19 @@ function ResumeAnalyzerPage() {
 
   return (
     <div className="space-y-6">
-      <div className="rounded-xl border bg-white p-5">
-        <h1 className="text-2xl font-bold">AI Resume Analyzer</h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Upload your resume PDF, get an ATS score and actionable suggestions, and track your
-          analysis history.
-        </p>
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-tr from-[#1d4084] via-[#355ca9] to-[#f48322] p-8 shadow-lg">
+        {/* Subtle glow effect for that premium dashboard feel */}
+        <div className="absolute -right-10 -top-10 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
+  
+        <div className="relative z-10">
+          <h1 className="text-3xl font-extrabold tracking-tight text-white">
+            AI Resume Analyzer
+          </h1>
+          <p className="mt-2 text-sm font-medium text-white/80 max-w-2xl leading-relaxed">
+            Upload your resume PDF, get an ATS score and actionable suggestions, and track your
+            analysis history.
+          </p>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-3">
@@ -340,16 +347,20 @@ function ResumeAnalyzerPage() {
               />
             </div>
 
-            <Button type="submit" disabled={isAnalyzing} className="w-full">
+            <Button 
+              type="submit" 
+              disabled={isAnalyzing} 
+              className="w-full h-10 rounded-xl bg-[#355ca9] hover:bg-[#1d4084] text-white font-bold shadow-md shadow-blue-900/10 transition-all active:scale-[0.98] flex items-center justify-center gap-2 mt-2"
+            >
               {isAnalyzing ? (
                 <>
                   <Loader2 className="h-4 w-4 animate-spin" />
-                  Parsing PDF and analyzing...
+                  <span className="text-sm">Analyzing PDF...</span>
                 </>
               ) : (
                 <>
                   <Sparkles className="h-4 w-4" />
-                  Analyze Resume
+                  <span className="text-sm">Analyze Resume</span>
                 </>
               )}
             </Button>

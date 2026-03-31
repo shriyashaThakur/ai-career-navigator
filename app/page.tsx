@@ -14,7 +14,7 @@ export default function Home() {
         <nav className="relative  p-4 max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8" aria-label="Global">
           <div className="flex items-center justify-between">
             <div>
-              <Image src={'/terna-logo.png'} alt="logo" width={150} height={150} />
+              <Image src={'/new.png'} alt="logo" width={150} height={150} />
             </div>
           </div>
           <div id="navbar-collapse-with-animation" className="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block">
